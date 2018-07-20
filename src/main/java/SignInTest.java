@@ -5,15 +5,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SignInTest {
+public class SignInTest extends LaunchDriver {
 
     WebDriver driver;
+
 
     @Test
     public void shouldThrowAnErrorIfSignInDetailsAreMissing() {
 
         setDriverPath();
-        launchDriver("chrome");
+        driver = driverLaunch("chrome");
+        //launchDriver("chrome");
 
         driver.get("https://www.cleartrip.com/");
         waitFor(2000);
@@ -38,12 +40,12 @@ public class SignInTest {
         }
     }
 
-    private void launchDriver(String driverName) {
+    /*private void launchDriver(String driverName) {
         if (driverName.equals("chrome")) {
             driver = new ChromeDriver();
         }
 
-    }
+    }*/
 
     private void setDriverPath() {
         if (PlatformUtil.isMac()) {
